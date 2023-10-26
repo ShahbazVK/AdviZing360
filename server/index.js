@@ -8,6 +8,7 @@ const notFoundMiddleware = require("./middlewares/not-found");
 const authRoutes = require("./routes/auth");
 const appointmentRoutes = require("./routes/appointment");
 const authMiddleware = require("./middlewares/auth");
+const consultantProfileRoutes = require("./routes/consultantProfile");
 const app = express();
 
 app.use(cookieParser());
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/appointment", authMiddleware, appointmentRoutes);
+app.use("/api/profile", authMiddleware, consultantProfileRoutes);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

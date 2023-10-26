@@ -32,6 +32,18 @@ model User {
   receivedMessages   Message[] @relation("receivedMessages")
   reviewsAsTutor    Review[] @relation("tutorReviews")
   reviewsAsUser     Review[] @relation("userReviews")
+  profile           TutorProfile?
+
+}
+model TutorProfile {
+  id           Int       @id @default(autoincrement())
+  tutor        User      @relation(fields: [tutorId], references: [id])
+  tutorId      Int @unique
+  bio          String?
+  subjects     String[] // An array of subjects the tutor can teach
+  hourlyRate   Int
+  availability Json     // Store availability data as JSON
+  // Add other fields specific to the tutor's profile
 }
 
 // Define the Appointment model
