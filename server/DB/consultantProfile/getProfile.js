@@ -1,12 +1,12 @@
 const prisma = require("..");
-const consultantTimingsPrisma = (tutorId) => {
+const getConsultantPrisma = (tutorId) => {
   return prisma.tutorProfile.findUnique({
     where: {
       tutorId: parseInt(tutorId),
     },
-    select: {
-      availability: true,
+    include: {
+      tutor: true,
     },
   });
 };
-module.exports = consultantTimingsPrisma;
+module.exports = getConsultantPrisma;

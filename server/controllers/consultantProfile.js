@@ -1,7 +1,7 @@
-const consultantTimingsPrisma = require("../DB/consultantProfile/consultantTimings");
 const createConsultantProfilePrisma = require("../DB/consultantProfile/createProfile");
 const getAllConsultantsPrisma = require("../DB/getGeneralList/getAllConsultants");
 const asyncWrapper = require("../middlewares/async");
+const getConsultantPrisma = require("../DB/consultantProfile/getProfile");
 const createConsultantProfile = asyncWrapper(async (req, res) => {
   const data = ({ subjects, hourlyRate, bio, availability } = req.body);
 
@@ -17,15 +17,15 @@ const getAllConsultants = asyncWrapper(async (req, res) => {
   res.json(consultants);
 });
 
-const consultantTimings = asyncWrapper(async (req, res) => {
+const getConsultant = asyncWrapper(async (req, res) => {
   const { id } = req.query;
 
-  const consultantTimings = await consultantTimingsPrisma(id);
-  res.json(consultantTimings);
+  const consultantDetails = await getConsultantPrisma(id);
+  res.json(consultantDetails);
 });
 
 module.exports = {
   createConsultantProfile,
-  consultantTimings,
+  getConsultant,
   getAllConsultants,
 };
