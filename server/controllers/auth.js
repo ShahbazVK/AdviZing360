@@ -1,3 +1,4 @@
+const bcrypt = require("bcryptjs");
 const findUserPrisma = require("../DB/auth/getUser");
 const registerPrisma = require("../DB/auth/register");
 const BadRequestError = require("../errors/bad-request");
@@ -13,8 +14,9 @@ const register = asyncWrapper(async (req, res) => {
 
   const ifUserExist = await findUserPrisma(email);
   if (ifUserExist) throw new BadRequestError("User already register");
-
-  const resp = await registerPrisma({ ...req.body });
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+  const resp = await registerPrisma({ ...req.body, password: hashedPassword });
   res.send(userTransformer(resp));
 });
 
