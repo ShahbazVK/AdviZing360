@@ -44,6 +44,10 @@ model TutorProfile {
   hourlyRate   Int
   availability Json     // Store availability data as JSON
   // Add other fields specific to the tutor's profile
+
+
+  keywords KeywordsOnUsers[]
+
 }
 
 // Define the Appointment model
@@ -87,4 +91,21 @@ model Review {
   date    DateTime @default(now())
   appointment Appointment @relation(fields: [appointmentId], references: [id])
   appointmentId Int
+}
+
+model Keyword{
+  id      Int    @id @default(autoincrement())
+  keyword String
+
+  tutors KeywordsOnUsers[]
+}
+
+model KeywordsOnUsers{
+  id      Int    @id @default(autoincrement())
+  keywordId Int
+  tutorId Int 
+
+  keyword Keyword @relation(fields: [keywordId],references: [id])
+  tutor TutorProfile @relation(fields: [tutorId],references: [id])
+  
 }

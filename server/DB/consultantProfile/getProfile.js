@@ -6,6 +6,15 @@ const getConsultantPrisma = (tutorId) => {
     },
     include: {
       tutor: true,
+      keywords: {
+        select: {
+          keyword: {
+            select: {
+              keyword: true,
+            },
+          },
+        },
+      },
     },
   });
 };
