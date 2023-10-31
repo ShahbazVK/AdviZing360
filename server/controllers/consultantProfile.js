@@ -3,6 +3,7 @@ const getAllConsultantsPrisma = require("../DB/getGeneralList/getAllConsultants"
 const asyncWrapper = require("../middlewares/async");
 const getConsultantPrisma = require("../DB/consultantProfile/getProfile");
 const searchKeywordPrisma = require("../DB/consultantProfile/searchKeyword");
+const getConsultantByKeywordPrisma = require("../DB/consultantProfile/getConsultantByKeyword");
 const createConsultantProfile = asyncWrapper(async (req, res) => {
   const { subject, ...data } = req.body;
 
@@ -34,9 +35,17 @@ const searchKeyword = asyncWrapper(async (req, res) => {
   res.json(keywords);
 });
 
+const getConsultantByKeyword = asyncWrapper(async (req, res) => {
+  const { search } = req.query;
+
+  const consultants = await getConsultantByKeywordPrisma(search);
+  res.json(consultants);
+});
+
 module.exports = {
   createConsultantProfile,
   getConsultant,
   getAllConsultants,
   searchKeyword,
+  getConsultantByKeyword,
 };
