@@ -1,5 +1,6 @@
 require("dotenv").config();
 require("express-async-errors");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
 const express = require("express");
@@ -10,6 +11,8 @@ const appointmentRoutes = require("./routes/appointment");
 const authMiddleware = require("./middlewares/auth");
 const consultantProfileRoutes = require("./routes/consultantProfile");
 const app = express();
+
+app.use(cors());
 
 app.use(cookieParser());
 app.use(express.json());
