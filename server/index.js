@@ -12,7 +12,12 @@ const authMiddleware = require("./middlewares/auth");
 const consultantProfileRoutes = require("./routes/consultantProfile");
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Replace with your React app's domain
+    credentials: true, // Enable credentials (cookies)
+  })
+);
 
 app.use(cookieParser());
 app.use(express.json());

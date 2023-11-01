@@ -6,3 +6,9 @@ body {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
+.consultant-card {
+  cursor: pointer;
+}
+.consultant-card:hover {
+  background-color: burlywood;
+}

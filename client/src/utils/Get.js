@@ -1,11 +1,11 @@
 import axios from "../config/APIBaseURL";
-import Unauthorized from "../errors/Unauthorized";
+import AllErrors from "../errors";
 export default async (url) => {
   return axios
-    .get(url)
+    .get(url, { withCredentials: true })
     .then((resp) => resp)
     .catch((err) => {
-      if (err.response.status === 401) Unauthorized();
-      else alert(err.response.data.msg);
+      // console.log(err);
+      AllErrors(err);
     });
 };

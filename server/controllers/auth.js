@@ -38,7 +38,8 @@ const login = asyncWrapper(async (req, res) => {
   res.send({ ...userTransformer(user) });
 });
 
-const getUser = asyncWrapper(async (req, res) => {
-  res.send("ai");
+const logout = asyncWrapper(async (req, res) => {
+  res.clearCookie("aaccessToken");
+  res.send("you are logged out");
 });
-module.exports = { getUser, register, login };
+module.exports = { register, login, logout };

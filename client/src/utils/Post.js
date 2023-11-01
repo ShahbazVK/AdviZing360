@@ -1,11 +1,10 @@
-import Unauthorized from "../errors/Unauthorized";
 import axios from "../config/APIBaseURL";
+import AllErrors from "../errors";
 export default async (url, data) => {
   return axios
-    .post(url, data)
+    .post(url, data, { withCredentials: true })
     .then((resp) => resp)
     .catch((err) => {
-      if (err.response.status === 401) Unauthorized();
-      else alert(err.response.data.msg);
+      AllErrors(err);
     });
 };
