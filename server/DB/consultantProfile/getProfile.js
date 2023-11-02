@@ -5,7 +5,15 @@ const getConsultantPrisma = (tutorId) => {
       tutorId: parseInt(tutorId),
     },
     include: {
-      tutor: true,
+      tutor: {
+        select: {
+          availability: true,
+          avatar: true,
+          bio: true,
+          id: true,
+          username: true,
+        },
+      },
       keywords: {
         select: {
           keyword: {

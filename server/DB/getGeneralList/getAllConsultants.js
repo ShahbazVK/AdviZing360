@@ -9,6 +9,7 @@ const getAllConsultantsPrisma = () => {
       availability: true,
       tutor: {
         select: {
+          id: true,
           username: true,
           avatar: true,
         },
