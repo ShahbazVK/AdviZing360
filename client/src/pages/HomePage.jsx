@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Get from "../utils/Get";
 import { SHOW_ALL_CONSULTANTS } from "../config/ApiRoutes";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const [Consultants, setConsultants] = useState([]);
   const fetchConsultants = async () => {
     const resp = await Get(SHOW_ALL_CONSULTANTS);
     setConsultants(resp.data);
   };
   const consultantProfile = (id) => {
-    console.log(id);
+    navigate(`/create-appointment?id=${id}`);
   };
   useEffect(() => {
     fetchConsultants();
@@ -22,7 +24,7 @@ const HomePage = () => {
         return (
           <div
             className="consultant-card"
-            onClick={() => consultantProfile(consultant.id)}
+            onClick={() => consultantProfile(consultant.tutor.id)}
             key={key}
           >
             {/* {JSON.stringify(consultant)} */}

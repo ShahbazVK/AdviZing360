@@ -4,10 +4,10 @@ import { UserContext } from "../context/UserContext";
 
 export const AuthenticatedRoutes = () => {
   const { User } = useContext(UserContext);
-  return !User.username ? <Navigate to={"/login"} /> : <Outlet />;
+  return User === null ? <Navigate to={"/login"} /> : <Outlet />;
 };
 
 export const UnauthenticatedRoutes = () => {
   const { User } = useContext(UserContext);
-  return User.username ? <Navigate to={"/"} /> : <Outlet />;
+  return User !== null ? <Navigate to={"/"} /> : <Outlet />;
 };

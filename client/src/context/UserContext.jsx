@@ -5,8 +5,10 @@ export const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
   const [User, setUser] = useState({});
+  const userCookie = read_cookie("User");
   useEffect(() => {
-    setUser(read_cookie("User"));
+    if (userCookie.username) setUser(userCookie);
+    else if (!userCookie.length) setUser(null);
   }, []);
 
   return (
