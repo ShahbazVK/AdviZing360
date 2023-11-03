@@ -14,7 +14,6 @@ const CreateAppointment = () => {
     const resp = await Get(SEARCH_CONSULTANT_BY_ID(id));
     setconsultant(resp.data);
     setloading(false);
-    // console.log(resp.data);
   };
   useEffect(() => {
     searchConsultantById(id);

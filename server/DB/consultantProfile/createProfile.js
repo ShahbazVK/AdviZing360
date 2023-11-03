@@ -1,6 +1,5 @@
 const prisma = require("..");
 const createConsultantProfilePrisma = (data, subject) => {
-  // console.log(subject);
   return prisma.tutorProfile.create({
     data: {
       ...data,

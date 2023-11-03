@@ -12,7 +12,6 @@ const {
 const asyncWrapper = require("../middlewares/async");
 
 const createAppointment = asyncWrapper(async (req, res) => {
-  //   console.log(req.body);
   const appointment = await createAppointmentPrisma({
     ...req.body,
     userId: req.user.id,
@@ -36,7 +35,6 @@ const searchAppointmentAsUser = asyncWrapper(async (req, res) => {
     req.user.id,
     search
   );
-  // console.log(filteredAppointments);
   res.json(filteredAppointments);
 });
 const searchAppointmentAsConsultant = asyncWrapper(async (req, res) => {
@@ -45,7 +43,6 @@ const searchAppointmentAsConsultant = asyncWrapper(async (req, res) => {
     req.user.id,
     search
   );
-  // console.log(filteredAppointments);
   res.json(filteredAppointments);
 });
 
@@ -54,14 +51,12 @@ const getSingleAppointmentAsConsultant = asyncWrapper(async (req, res) => {
   const appointment = await getSingleAppointmentAsConsultantPrisma(
     appointmentId
   );
-  // console.log(filteredAppointments);
   res.json(appointment);
 });
 
 const getSingleAppointmentAsUser = asyncWrapper(async (req, res) => {
   const appointmentId = req.query.id;
   const appointment = await getSingleAppointmentAsUserPrisma(appointmentId);
-  // console.log(filteredAppointments);
   res.json(appointment);
 });
 

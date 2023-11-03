@@ -1,6 +1,5 @@
 const prisma = require("..");
 const getConsultantByKeywordPrisma = (keyword) => {
-  // console.log(subject);
   return prisma.tutorProfile.findMany({
     include: {
       keywords: {

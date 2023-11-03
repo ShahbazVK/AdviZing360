@@ -10,7 +10,6 @@ const authMiddleware = (req, res, next) => {
   } catch (error) {
     throw new UnauthenticatedError("JWT expired");
   }
-  //   console.log(decoded);
 };
 
 module.exports = authMiddleware;
