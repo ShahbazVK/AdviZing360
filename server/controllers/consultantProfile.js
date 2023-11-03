@@ -34,14 +34,15 @@ const createConsultantProfile = asyncWrapper(async (req, res) => {
 });
 
 const getAllConsultants = asyncWrapper(async (req, res) => {
-  const consultants = await getAllConsultantsPrisma();
+  const consultants = await getAllConsultantsPrisma(req.user.id);
   res.json(consultants);
 });
 
 const getConsultant = asyncWrapper(async (req, res) => {
   const { id } = req.query;
-
-  const consultantDetails = await getConsultantPrisma(id);
+  if (req.user.id === parseInt(id))
+    throw new BadRequestError("You cannot book your own appointment");
+  const consultantDetails = await getConsultantPrisma(req.user.id, id);
   res.json(consultantDetails);
 });
 const searchKeyword = asyncWrapper(async (req, res) => {

@@ -1,6 +1,11 @@
 const prisma = require("..");
-const getAllConsultantsPrisma = () => {
+const getAllConsultantsPrisma = (id) => {
   return prisma.tutorProfile.findMany({
+    where: {
+      tutorId: {
+        not: id,
+      },
+    },
     select: {
       id: true,
       bio: true,
