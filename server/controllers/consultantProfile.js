@@ -4,8 +4,24 @@ const asyncWrapper = require("../middlewares/async");
 const getConsultantPrisma = require("../DB/consultantProfile/getProfile");
 const searchKeywordPrisma = require("../DB/consultantProfile/searchKeyword");
 const getConsultantByKeywordPrisma = require("../DB/consultantProfile/getConsultantByKeyword");
+const { daysOfWeek, isCustomTimeFormat } = require("../utils/date");
+const { BadRequestError } = require("../errors");
 const createConsultantProfile = asyncWrapper(async (req, res) => {
-  const { subject, ...data } = req.body;
+  let startTime = "";
+  let endTime = "";
+  const { subject, availability, ...data } = req.body;
+  daysOfWeek.forEach((day, index) => {
+    if (!availability[day]) {
+      availability[day] = null;
+    } else {
+      startTime = isCustomTimeFormat(availability[day].startTime);
+      endTime = isCustomTimeFormat(availability[day].endTime);
+      if (!startTime || !endTime) {
+        throw new BadRequestError("time must be in following format HH:MM:SS");
+      }
+    }
+  });
+  data.availability = availability;
 
   const profile = await createConsultantProfilePrisma(
     {
