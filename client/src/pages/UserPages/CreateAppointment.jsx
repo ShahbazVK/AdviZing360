@@ -3,11 +3,11 @@ import { useSearchParams } from "react-router-dom";
 import {
   CREATE_APPOINTMENT,
   SEARCH_CONSULTANT_BY_ID,
-} from "../config/ApiRoutes";
-import Get from "../utils/Get";
-import SchedulingTime from "../components/appointment/SchedulingTime";
-import Subject from "../components/appointment/Subject";
-import Post from "../utils/Post";
+} from "../../config/ApiRoutes";
+import Get from "../../utils/Get";
+import SchedulingTime from "../../components/appointment/SchedulingTime";
+import Subject from "../../components/appointment/Subject";
+import Post from "../../utils/Post";
 
 const CreateAppointment = () => {
   const [searchParams] = useSearchParams();

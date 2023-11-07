@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Get from "../utils/Get";
-import { GET_APPOINTMENT_BY_ID_AS_USER } from "../config/ApiRoutes";
+import Get from "../../utils/Get";
+import { GET_APPOINTMENT_BY_ID_AS_USER } from "../../config/ApiRoutes";
 import { useSearchParams } from "react-router-dom";
 
 const AppointmentDetail = () => {
