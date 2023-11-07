@@ -10,6 +10,7 @@ import {
   UnauthenticatedRoutes,
 } from "./utils/ProtectedRoutes";
 import CreateAppointment from "./pages/CreateAppointment";
+import AppointmentDetail from "./pages/AppointmentDetail";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route element={<AuthenticatedRoutes />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/create-appointment" element={<CreateAppointment />} />
+          <Route path="/appointment-details" element={<AppointmentDetail />} />
           <Route path="/logout" element={<LogoutPage />} />
         </Route>
         <Route element={<UnauthenticatedRoutes />}>

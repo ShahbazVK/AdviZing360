@@ -27,7 +27,7 @@ const login = asyncWrapper(async (req, res) => {
   const user = await findUserPrisma(email);
   if (!user) throw new BadRequestError("User is not registered");
 
-  const isAuthorized = password === user.password;
+  const isAuthorized = await bcrypt.compare(password, user.password);
 
   if (!isAuthorized) throw new BadRequestError("wrong password");
 

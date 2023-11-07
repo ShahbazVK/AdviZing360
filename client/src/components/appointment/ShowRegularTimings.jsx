@@ -4,9 +4,14 @@ import {
   GetNextDateOfWeekInFormat,
 } from "../../utils/DateFunctions";
 
-const ShowRegularTimings = ({ slotTimings, availability }) => {
+const ShowRegularTimings = ({ slotTimings, availability, setappointment }) => {
   const selectDateFunc = (timing) => {
-    console.log(timing);
+    // console.log(timing);
+    setappointment((prev) => ({
+      ...prev,
+      startTime: timing.startTime,
+      endTime: timing.endTime,
+    }));
   };
   return (
     <div>

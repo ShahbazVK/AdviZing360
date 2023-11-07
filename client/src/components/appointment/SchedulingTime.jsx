@@ -6,7 +6,7 @@ import {
 } from "../../utils/DateFunctions";
 import ShowRegularTimings from "./ShowRegularTimings";
 
-const SchedulingTime = ({ availability }) => {
+const SchedulingTime = ({ availability, setappointment }) => {
   const [slotTimings, setslotTimings] = useState({});
   const [loading, setloading] = useState(true);
 
@@ -53,6 +53,7 @@ const SchedulingTime = ({ availability }) => {
             <ShowRegularTimings
               availability={availability}
               slotTimings={slotTimings}
+              setappointment={setappointment}
             />
           </div>
         </div>

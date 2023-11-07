@@ -16,7 +16,16 @@ const getSingleAppointmentAsUserPrisma = (id) => {
       id: parseInt(id),
     },
     include: {
-      tutor: true,
+      tutor: {
+        select: {
+          profile: {
+            select: {
+              bio: true,
+            },
+          },
+          username: true,
+        },
+      },
     },
   });
 };

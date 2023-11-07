@@ -4,8 +4,17 @@ const getAppointmentAsUserPrisma = (id) => {
     where: {
       id,
     },
-    include: {
-      appointmentsAsUser: true,
+    select: {
+      appointmentsAsUser: {
+        include: {
+          tutor: {
+            select: {
+              username: true,
+              id: true,
+            },
+          },
+        },
+      },
     },
   });
 };
