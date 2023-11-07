@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Get from "../../utils/Get";
-import { GET_APPOINTMENTS_AS_USER } from "../../config/ApiRoutes";
+import Get from "../../../utils/Get";
+import { GET_APPOINTMENTS_AS_USER } from "../../../config/ApiRoutes";
 import { useNavigate } from "react-router-dom";
 
 const ShowAppointments = () => {

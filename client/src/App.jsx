@@ -1,6 +1,7 @@
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/UserPages/HomePage";
+import UserHomePage from "./pages/UserPages/HomePage";
+import ConsultantHomePage from "./pages/ConsultantPages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import TheNavbar from "./components/TheNavbar";
@@ -19,10 +20,11 @@ function App() {
       <TheNavbar />
       <Routes>
         <Route element={<AuthenticatedRoutes />}>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<UserHomePage />} />
           <Route path="/create-appointment" element={<CreateAppointment />} />
           <Route path="/appointment-details" element={<AppointmentDetail />} />
           <Route path="/switch-role" element={<SwitchRolePage />} />
+          <Route path="/consultant" element={<ConsultantHomePage />} />
           <Route path="/logout" element={<LogoutPage />} />
         </Route>
         <Route element={<UnauthenticatedRoutes />}>

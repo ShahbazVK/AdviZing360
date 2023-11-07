@@ -5,8 +5,8 @@ import {
   SEARCH_CONSULTANT_BY_ID,
 } from "../../config/ApiRoutes";
 import Get from "../../utils/Get";
-import SchedulingTime from "../../components/appointment/SchedulingTime";
-import Subject from "../../components/appointment/Subject";
+import SchedulingTime from "../../components/appointment/user/SchedulingTime";
+import Subject from "../../components/appointment/user/Subject";
 import Post from "../../utils/Post";
 
 const CreateAppointment = () => {

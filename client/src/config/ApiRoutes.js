@@ -8,3 +8,5 @@ export const CREATE_APPOINTMENT = "/appointment/create";
 export const GET_APPOINTMENTS_AS_USER = "/appointment/get-appointment-as-user";
 export const GET_APPOINTMENT_BY_ID_AS_USER = (id) =>
   `/appointment/get-single-appointment-as-user?id=${id}`;
+export const GET_APPOINTMENTS_AS_CONSULTANT =
+  "/appointment/get-appointment-as-consultant";

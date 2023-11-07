@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import UITextarea from "../UI/UITextarea";
+import UITextarea from "../../UI/UITextarea";
 
 const Subject = ({ setValue }) => {
   const [subject, setsubject] = useState("");

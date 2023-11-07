@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Get from "../../utils/Get";
-import { SHOW_ALL_CONSULTANTS } from "../../config/ApiRoutes";
+import React from "react";
 import ShowConsultants from "../../components/consultants/ShowConsultants";
-import ShowAppointments from "../../components/appointment/ShowAppointments";
+import ShowAppointments from "../../components/appointment/user/ShowAppointments";
 
 const HomePage = () => {
   return (

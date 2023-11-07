@@ -2,7 +2,7 @@ import React from "react";
 import {
   DurationTimingsFormat,
   GetNextDateOfWeekInFormat,
-} from "../../utils/DateFunctions";
+} from "../../../utils/DateFunctions";
 
 const ShowRegularTimings = ({ slotTimings, availability, setappointment }) => {
   const selectDateFunc = (timing) => {

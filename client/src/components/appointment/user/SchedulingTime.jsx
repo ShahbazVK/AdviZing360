@@ -3,7 +3,7 @@ import {
   GetNextDateOfWeekInFormat,
   DurationTimingsFormat,
   customColonTimeTo_NextDate_TimeDateConversion,
-} from "../../utils/DateFunctions";
+} from "../../../utils/DateFunctions";
 import ShowRegularTimings from "./ShowRegularTimings";
 
 const SchedulingTime = ({ availability, setappointment }) => {
