@@ -10,7 +10,11 @@ const UIInput = ({ type, placeholder, name, value, setVar }) => {
         name={name}
         value={value}
         onChange={(e) =>
-          setVar((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+          setVar((prev) => ({
+            ...prev,
+            [e.target.name]:
+              type === "number" ? parseInt(e.target.value) : e.target.value,
+          }))
         }
       />
     </div>

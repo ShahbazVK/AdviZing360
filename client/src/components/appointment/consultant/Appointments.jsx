@@ -4,10 +4,11 @@ import { GET_APPOINTMENTS_AS_CONSULTANT } from "../../../config/ApiRoutes";
 
 const Appointments = () => {
   const [appointments, setappointments] = useState([]);
+  const [loading, setloading] = useState(true);
   const fetchBookedAppointments = async () => {
     const resp = await Get(GET_APPOINTMENTS_AS_CONSULTANT);
-    console.log(resp.data.appointmentsAsTutor);
     setappointments(resp.data.appointmentsAsTutor);
+    setloading(false);
   };
   useEffect(() => {
     fetchBookedAppointments();
@@ -16,7 +17,7 @@ const Appointments = () => {
   return (
     <div>
       <h3>Appointments</h3>
-      {appointments.length ? (
+      {!loading ? (
         appointments.map((appointment, key) => {
           return (
             <div key={key}>

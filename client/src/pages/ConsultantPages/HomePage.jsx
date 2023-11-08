@@ -4,7 +4,7 @@ import Appointments from "../../components/appointment/consultant/Appointments";
 const HomePage = () => {
   return (
     <div>
-      <h1>HomePage</h1>
+      <h1>Consultant HomePage</h1>
       <Appointments />
     </div>
   );

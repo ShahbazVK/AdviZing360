@@ -19,7 +19,7 @@ const LoginPage = () => {
   const login = async () => {
     const resp = await Post(LOGIN, loginData);
     if (resp?.statusText === "OK") {
-      setUser({ username: resp.data.username });
+      setUser({ ...resp.data, role: "user" });
       bake_cookie("User", { ...resp.data, role: "user" });
       navigate("/");
     }

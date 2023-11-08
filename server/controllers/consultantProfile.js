@@ -40,8 +40,8 @@ const getAllConsultants = asyncWrapper(async (req, res) => {
 
 const getConsultant = asyncWrapper(async (req, res) => {
   const { id } = req.query;
-  if (req.user.id === parseInt(id))
-    throw new BadRequestError("You cannot book your own appointment");
+  // if (req.user.id === parseInt(id))
+  // throw new BadRequestError("You cannot book your own appointment");
   const consultantDetails = await getConsultantPrisma(id);
   res.json(consultantDetails);
 });
