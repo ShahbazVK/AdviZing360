@@ -6,7 +6,11 @@ import {
 } from "../../../utils/DateFunctions";
 import ShowRegularTimings from "./ShowRegularTimings";
 
-const SchedulingTime = ({ availability, setappointment }) => {
+const SchedulingTime = ({
+  availability,
+  setappointment,
+  minutesPerSession,
+}) => {
   const [slotTimings, setslotTimings] = useState({});
   const [loading, setloading] = useState(true);
 
@@ -16,11 +20,15 @@ const SchedulingTime = ({ availability, setappointment }) => {
     let tempTime = [];
     while (
       startTime <=
-      new Date(endTime).setMinutes(new Date(endTime).getMinutes() - 30)
+      new Date(endTime).setMinutes(
+        new Date(endTime).getMinutes() - minutesPerSession
+      )
     ) {
       tempTime.push({
         startTime: new Date(startTime),
-        endTime: new Date(startTime.setMinutes(startTime.getMinutes() + 30)),
+        endTime: new Date(
+          startTime.setMinutes(startTime.getMinutes() + minutesPerSession)
+        ),
       });
     }
     setslotTimings((prev) => ({ ...prev, [day]: tempTime }));

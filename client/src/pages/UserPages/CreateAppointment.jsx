@@ -13,7 +13,6 @@ const CreateAppointment = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
   const [consultant, setconsultant] = useState({});
-  // const [subject, setsubject] = useState("abcdef");
   const [appointment, setappointment] = useState({
     startTime: new Date(),
     endTime: new Date(),
@@ -30,7 +29,6 @@ const CreateAppointment = () => {
     setappointment((prev) => ({ ...prev, price: resp.data.hourlyRate }));
   };
   const createAppointment = async () => {
-    console.log(appointment);
     const appointmentRequest = await Post(CREATE_APPOINTMENT, appointment);
     console.log(appointmentRequest);
   };
@@ -49,6 +47,7 @@ const CreateAppointment = () => {
           <SchedulingTime
             availability={consultant.availability}
             setappointment={setappointment}
+            minutesPerSession={consultant.minutesPerSession}
           />
           <Subject setValue={setappointment} />
 

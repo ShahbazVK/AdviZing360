@@ -1,7 +1,6 @@
 import React from "react";
 
 const ShowOwnProfile = ({ profile }) => {
-  //   console.log(profile);
   return (
     <div>
       <h3>ShowOwnProfile</h3>
@@ -12,6 +11,7 @@ const ShowOwnProfile = ({ profile }) => {
             <p>Bio: {profile.bio}</p>
             <p>Hourly Rate: {profile.hourlyRate}</p>
             <p>Subject: {profile.keywords[0].keyword.keyword}</p>
+            <p>Per session minutes: {profile.minutesPerSession}</p>
             <div>
               {Object.keys(profile.availability).map((day, key) => {
                 if (profile.availability[day])

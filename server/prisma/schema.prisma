@@ -43,6 +43,7 @@ model TutorProfile {
   subjects     String[] // An array of subjects the tutor can teach
   hourlyRate   Int
   availability Json     // Store availability data as JSON
+  minutesPerSession Int
   // Add other fields specific to the tutor's profile
 
 

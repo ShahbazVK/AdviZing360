@@ -7,9 +7,7 @@ const getConsultantPrisma = (tutorId) => {
     include: {
       tutor: {
         select: {
-          availability: true,
           avatar: true,
-          bio: true,
           id: true,
           username: true,
         },

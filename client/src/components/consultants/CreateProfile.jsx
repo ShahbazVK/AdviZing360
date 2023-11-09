@@ -10,6 +10,7 @@ const CreateProfile = () => {
     subject: "devops engineer",
     hourlyRate: 0,
     bio: "Hi i am devops engineer",
+    minutesPerSession: 0,
     availability: {
       monday: { startTime: "17:17:12", endTime: "23:34:12" },
       tuesday: { startTime: "18:17:12", endTime: "23:35:12" },
@@ -22,8 +23,10 @@ const CreateProfile = () => {
   });
   const createProfile = async (e) => {
     e.preventDefault();
+    console.log(profile);
     const resp = await Post(CREATE_CONSULTANT_PROFILE, profile);
     console.log(resp);
+    // console.log(profile);
   };
   return (
     <div>
@@ -49,6 +52,13 @@ const CreateProfile = () => {
           value={profile.bio}
           setVar={setprofile}
           type={"text"}
+        />
+        <UIInput
+          name={"minutesPerSession"}
+          placeholder={"Minutes Per Session"}
+          value={profile.minutesPerSession}
+          setVar={setprofile}
+          type={"number"}
         />
         <br />
         {/* add availability here */}
