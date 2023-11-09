@@ -1,8 +1,11 @@
 const prisma = require("..");
-const getSingleAppointmentAsConsultantPrisma = (id) => {
+const getSingleAppointmentAsConsultantPrisma = (userId, appointmentId) => {
   return prisma.appointment.findUnique({
     where: {
-      id: parseInt(id),
+      id: parseInt(appointmentId),
+      AND: {
+        tutorId: userId,
+      },
     },
     include: {
       user: {
@@ -15,10 +18,13 @@ const getSingleAppointmentAsConsultantPrisma = (id) => {
   });
 };
 
-const getSingleAppointmentAsUserPrisma = (id) => {
+const getSingleAppointmentAsUserPrisma = (userId, appointmentId) => {
   return prisma.appointment.findUnique({
     where: {
-      id: parseInt(id),
+      id: parseInt(appointmentId),
+      AND: {
+        userId,
+      },
     },
     include: {
       tutor: {

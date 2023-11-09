@@ -9,6 +9,7 @@ const {
   searchAppointmentAsUserPrisma,
   searchAppointmentAsConsultantPrisma,
 } = require("../DB/appointment/searchAppointments");
+const BadRequestError = require("../errors/bad-request");
 const asyncWrapper = require("../middlewares/async");
 
 const createAppointment = asyncWrapper(async (req, res) => {
@@ -49,14 +50,22 @@ const searchAppointmentAsConsultant = asyncWrapper(async (req, res) => {
 const getSingleAppointmentAsConsultant = asyncWrapper(async (req, res) => {
   const appointmentId = req.query.id;
   const appointment = await getSingleAppointmentAsConsultantPrisma(
+    req.user.id,
     appointmentId
   );
+  if (!appointment)
+    throw new BadRequestError("Such appointment does not exist");
   res.json(appointment);
 });
 
 const getSingleAppointmentAsUser = asyncWrapper(async (req, res) => {
   const appointmentId = req.query.id;
-  const appointment = await getSingleAppointmentAsUserPrisma(appointmentId);
+  const appointment = await getSingleAppointmentAsUserPrisma(
+    req.user.id,
+    appointmentId
+  );
+  if (!appointment)
+    throw new BadRequestError("Such appointment does not exist");
   res.json(appointment);
 });
 
