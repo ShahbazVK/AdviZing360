@@ -11,6 +11,7 @@ const TheNavbar = () => {
         <Link to={"/"}>Home</Link>
         <Link to={"/switch-role"}>Switch</Link>
         <Link to={"/logout"}>Logout</Link>
+        <p>User: {User.username}</p>
       </ul>
     );
   } else if (User?.role === Roles.CONSULTANT) {
@@ -20,6 +21,7 @@ const TheNavbar = () => {
         <Link to={"/switch-role"}>Switch</Link>
         <Link to={"/consultant-profile"}>Profile</Link>
         <Link to={"/logout"}>Logout</Link>
+        <p>User: {User.username}</p>
       </ul>
     );
   } else if (User === null) {

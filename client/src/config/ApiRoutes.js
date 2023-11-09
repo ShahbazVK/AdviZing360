@@ -12,3 +12,5 @@ export const GET_APPOINTMENTS_AS_CONSULTANT =
   "/appointment/get-appointment-as-consultant";
 export const GET_CONSULTANT_BY_ID = (id) => `/profile/get-consultant?id=${id}`;
 export const CREATE_CONSULTANT_PROFILE = "/profile/consultant-profile";
+export const GET_APPOINTMENT_AS_CONSULTANT = (id) =>
+  `/appointment/get-single-appointment-as-consultant?id=${id}`;

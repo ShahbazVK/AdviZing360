@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Get from "../../../utils/Get";
 import { GET_APPOINTMENTS_AS_CONSULTANT } from "../../../config/ApiRoutes";
 
 const Appointments = () => {
+  const navigate = useNavigate();
   const [appointments, setappointments] = useState([]);
   const [loading, setloading] = useState(true);
   const fetchBookedAppointments = async () => {
     const resp = await Get(GET_APPOINTMENTS_AS_CONSULTANT);
     setappointments(resp.data.appointmentsAsTutor);
     setloading(false);
+  };
+  const goToAppointment = (id) => {
+    navigate(`/consultant/appointment?id=${id}`);
   };
   useEffect(() => {
     fetchBookedAppointments();
@@ -20,7 +25,11 @@ const Appointments = () => {
       {!loading ? (
         appointments.map((appointment, key) => {
           return (
-            <div key={key}>
+            <div
+              onClick={() => goToAppointment(appointment.id)}
+              key={key}
+              className="appointment-card"
+            >
               <p>User name: {appointment.user.username}</p>
               <p>Status: {appointment.status}</p>
               <p>Price: {appointment.price}</p>

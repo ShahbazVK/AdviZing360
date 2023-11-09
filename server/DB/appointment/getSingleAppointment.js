@@ -5,7 +5,12 @@ const getSingleAppointmentAsConsultantPrisma = (id) => {
       id: parseInt(id),
     },
     include: {
-      user: true,
+      user: {
+        select: {
+          id: true,
+          username: true,
+        },
+      },
     },
   });
 };

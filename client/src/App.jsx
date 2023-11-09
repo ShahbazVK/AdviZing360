@@ -14,6 +14,7 @@ import CreateAppointment from "./pages/UserPages/CreateAppointment";
 import AppointmentDetail from "./pages/UserPages/AppointmentDetail";
 import SwitchRolePage from "./pages/SwitchRolePage";
 import TheProfile from "./pages/ConsultantPages/TheProfile";
+import AppointmentPage from "./pages/ConsultantPages/AppointmentPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/switch-role" element={<SwitchRolePage />} />
           <Route path="/consultant" element={<ConsultantHomePage />} />
           <Route path="/consultant-profile" element={<TheProfile />} />
+          <Route path="/consultant/appointment" element={<AppointmentPage />} />
           <Route path="/logout" element={<LogoutPage />} />
         </Route>
         <Route element={<UnauthenticatedRoutes />}>
