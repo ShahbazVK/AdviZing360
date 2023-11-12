@@ -88,6 +88,7 @@ export const DurationTimingsFormat = ({ startTime, endTime, callbackFunc }) => {
 export const customColonTimeTo_NextDate_TimeDateConversion = (time, day) => {
   const nextDate = getNextDateOfWeek(day);
   const timeArr = time.split(":");
+  timeArr[2] = "00";
   const extract = extractFromDate(nextDate);
   nextDate.setFullYear(extract.year, extract.month, extract.date);
   nextDate.setHours(

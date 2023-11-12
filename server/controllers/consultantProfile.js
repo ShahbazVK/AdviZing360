@@ -17,7 +17,7 @@ const createConsultantProfile = asyncWrapper(async (req, res) => {
       startTime = isCustomTimeFormat(availability[day].startTime);
       endTime = isCustomTimeFormat(availability[day].endTime);
       if (!startTime || !endTime) {
-        throw new BadRequestError("time must be in following format HH:MM:SS");
+        throw new BadRequestError("time must be in following format HH:MM");
       }
     }
   });

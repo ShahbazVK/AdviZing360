@@ -12,13 +12,13 @@ const CreateProfile = () => {
     bio: "Hi i am devops engineer",
     minutesPerSession: 0,
     availability: {
-      monday: { startTime: "17:17:12", endTime: "23:34:12" },
-      tuesday: { startTime: "18:17:12", endTime: "23:35:12" },
-      wednesday: { startTime: "19:17:12", endTime: "23:14:12" },
-      thursday: { startTime: "17:17:12", endTime: "23:32:12" },
-      friday: { startTime: "17:17:12", endTime: "23:34:22" },
-      saturday: { startTime: "21:17:12", endTime: "23:37:12" },
-      sunday: { startTime: "12:17:12", endTime: "23:30:12" },
+      monday: { startTime: "17:17", endTime: "23:34" },
+      tuesday: { startTime: "18:17", endTime: "23:35" },
+      wednesday: { startTime: "19:17", endTime: "23:14" },
+      thursday: { startTime: "17:17", endTime: "23:32" },
+      friday: { startTime: "17:17", endTime: "23:34" },
+      saturday: { startTime: "21:17", endTime: "23:37" },
+      sunday: { startTime: "12:17", endTime: "23:30" },
     },
   });
   const createProfile = async (e) => {

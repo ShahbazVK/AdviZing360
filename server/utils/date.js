@@ -11,11 +11,10 @@ const daysOfWeek = [
 const isCustomTimeFormat = (time) => {
   const timeParts = time.split(":");
 
-  if (timeParts.length === 3) {
+  if (timeParts.length === 2) {
     const hours = parseInt(timeParts[0], 10);
     const minutes = parseInt(timeParts[1], 10);
-    const seconds = parseInt(timeParts[2], 10);
-    if (!isNaN(hours) && !isNaN(minutes) && !isNaN(seconds)) {
+    if (!isNaN(hours) && !isNaN(minutes)) {
       return true;
     }
   }
