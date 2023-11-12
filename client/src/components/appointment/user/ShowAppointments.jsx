@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import Get from "../../../utils/Get";
 import { GET_APPOINTMENTS_AS_USER } from "../../../config/ApiRoutes";
 import { useNavigate } from "react-router-dom";
+import {
+  GetDateInFormat,
+  getColonTimeFromDateWithoutSeconds,
+} from "../../../utils/DateFunctions";
 
 const ShowAppointments = () => {
   const navigate = useNavigate();
@@ -33,8 +37,15 @@ const ShowAppointments = () => {
               <p>My subject: {appointment.subject}</p>
               <p>price: {appointment.price}</p>
               <p>status: {appointment.status}</p>
-              <p>Start time: {appointment.startTime}</p>
-              <p>End time: {appointment.endTime}</p>
+              <GetDateInFormat date={appointment.startTime} />
+              <p>
+                Start Time:{" "}
+                {getColonTimeFromDateWithoutSeconds(appointment.startTime)}
+              </p>
+              <p>
+                End Time:{" "}
+                {getColonTimeFromDateWithoutSeconds(appointment.endTime)}
+              </p>
               <hr />
             </div>
           );

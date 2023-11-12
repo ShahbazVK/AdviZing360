@@ -11,13 +11,26 @@ const {
 } = require("../DB/appointment/searchAppointments");
 const BadRequestError = require("../errors/bad-request");
 const asyncWrapper = require("../middlewares/async");
+const { durationBetweenTimeInMinutes } = require("../utils/date");
+const createMeeting = require("../utils/generateZoomMeetingLink");
 
 const createAppointment = asyncWrapper(async (req, res) => {
+  const { startTime, endTime, subject } = req.body;
+  const meetingDurationInMinutes = durationBetweenTimeInMinutes(
+    startTime,
+    endTime
+  );
+  const meetingDetails = await createMeeting(
+    subject,
+    meetingDurationInMinutes,
+    startTime
+  );
   const appointment = await createAppointmentPrisma({
     ...req.body,
+    meetingLink: meetingDetails.meeting_url,
     userId: req.user.id,
   });
-  res.json(appointment);
+  res.json({ appointment, meetingDetails });
 });
 
 const getAppointmentAsConsultant = asyncWrapper(async (req, res) => {

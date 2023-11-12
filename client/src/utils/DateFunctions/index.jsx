@@ -37,6 +37,20 @@ export const GetNextDateOfWeekInFormat = ({ day }) => {
   );
 };
 
+// date in this format 2 December, 2023
+export const GetDateInFormat = ({ date }) => {
+  date = new Date(date);
+  return (
+    <p>
+      {date.getDate().toString()}{" "}
+      {date.toLocaleString("default", {
+        month: "long",
+      })}
+      , {date.getFullYear().toString()}
+    </p>
+  );
+};
+
 export const extractFromDate = (d) => {
   d = new Date(d);
   const year = d.getFullYear();
@@ -49,15 +63,20 @@ export const extractFromDate = (d) => {
   return { year, month, date, day, hour, minute, second };
 };
 
-export const getColonTimeFromDate = (date) => {
+export const getColonTimeFromDateWithSeconds = (date) => {
   //10:00:00
-  return date.toTimeString().slice(0, 8);
+  return new Date(date).toTimeString().slice(0, 8);
+};
+
+export const getColonTimeFromDateWithoutSeconds = (date) => {
+  //10:00
+  return new Date(date).toTimeString().slice(0, 5);
 };
 
 export const DurationTimingsFormat = ({ startTime, endTime, callbackFunc }) => {
   //10:00:00 - 14:00:00
-  startTime = getColonTimeFromDate(startTime);
-  endTime = getColonTimeFromDate(endTime);
+  startTime = getColonTimeFromDateWithoutSeconds(startTime);
+  endTime = getColonTimeFromDateWithoutSeconds(endTime);
   return (
     <p onClick={callbackFunc}>
       {startTime} - {endTime}
@@ -65,6 +84,7 @@ export const DurationTimingsFormat = ({ startTime, endTime, callbackFunc }) => {
   );
 };
 
+// 10:00:50 ---> nextdate_timedate
 export const customColonTimeTo_NextDate_TimeDateConversion = (time, day) => {
   const nextDate = getNextDateOfWeek(day);
   const timeArr = time.split(":");

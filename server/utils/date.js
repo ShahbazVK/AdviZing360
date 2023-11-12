@@ -22,4 +22,12 @@ const isCustomTimeFormat = (time) => {
   return false;
 };
 
-module.exports = { daysOfWeek, isCustomTimeFormat };
+const durationBetweenTimeInMinutes = (startTime, endTime) => {
+  return (new Date(endTime) - new Date(startTime)) / 60000;
+};
+
+module.exports = {
+  daysOfWeek,
+  isCustomTimeFormat,
+  durationBetweenTimeInMinutes,
+};

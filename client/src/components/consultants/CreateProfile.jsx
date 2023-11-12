@@ -23,7 +23,6 @@ const CreateProfile = () => {
   });
   const createProfile = async (e) => {
     e.preventDefault();
-    console.log(profile);
     const resp = await Post(CREATE_CONSULTANT_PROFILE, profile);
     console.log(resp);
     // console.log(profile);

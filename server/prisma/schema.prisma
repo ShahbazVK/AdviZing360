@@ -64,6 +64,7 @@ model Appointment {
   subject      String?
   location     String?
   price        Int?
+  meetingLink String?
   // Define the reviews relationship
   reviews      Review[]
 }
