@@ -16,14 +16,13 @@ model User {
   username     String    @unique
   email        String    @unique
   password     String
-  // roles        String[]  @default(["user"])
-  name         String?
+  name         String? //remove
   avatar       String?
   bio          String?
   phone        String?
   address      String?
   // Define the availability field to store consulting hours
-  availability  String?
+  availability  String? //remove
   
   // Define relationships for appointments and messages
   appointmentsAsTutor Appointment[] @relation("tutorAppointments")
@@ -40,7 +39,7 @@ model TutorProfile {
   tutor        User      @relation(fields: [tutorId], references: [id])
   tutorId      Int @unique
   bio          String?
-  subjects     String[] // An array of subjects the tutor can teach
+  subjects     String[] // remove
   hourlyRate   Int
   availability Json     // Store availability data as JSON
   minutesPerSession Int
