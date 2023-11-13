@@ -34,6 +34,7 @@ const Appointments = () => {
               key={key}
               className="appointment-card"
             >
+              <img src={appointment.user.avatar} width={50} />
               <p>User name: {appointment.user.username}</p>
               <p>Status: {appointment.status}</p>
               <p>Price: {appointment.price}</p>

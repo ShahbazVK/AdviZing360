@@ -5,9 +5,11 @@ const BadRequestError = require("../errors/bad-request");
 const asyncWrapper = require("../middlewares/async");
 const userTransformer = require("../transformers/user");
 const generateToken = require("../utils/jwtToken");
+const uploadImage = require("../utils/upload_cloudinary");
 
 const register = asyncWrapper(async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, profileImg } = req.body;
+
   if (!username || !email || !password)
     throw new BadRequestError("fill out all the fields");
 
@@ -15,7 +17,13 @@ const register = asyncWrapper(async (req, res) => {
   if (ifUserExist) throw new BadRequestError("User already register");
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
-  const resp = await registerPrisma({ ...req.body, password: hashedPassword });
+  const avatar = await uploadImage(profileImg);
+  const resp = await registerPrisma({
+    username,
+    email,
+    password: hashedPassword,
+    avatar,
+  });
   res.send(userTransformer(resp));
 });
 

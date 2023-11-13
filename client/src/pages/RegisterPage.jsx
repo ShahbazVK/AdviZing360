@@ -4,6 +4,7 @@ import UIInputSubmit from "../components/UI/UIInputSubmit";
 import Post from "../utils/Post";
 import { useNavigate } from "react-router-dom";
 import { REGISTER } from "../config/ApiRoutes";
+import UIInputImage from "../components/UI/UIInputImage";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const RegisterPage = () => {
     username: "",
     email: "",
     password: "",
+    profileImg: null,
   });
 
   const register = async () => {
@@ -40,6 +42,11 @@ const RegisterPage = () => {
         name={"password"}
         value={registerData.password}
         setVar={setregisterData}
+      />
+      <UIInputImage
+        name={"profileImg"}
+        value={registerData.profileImg}
+        setValue={setregisterData}
       />
       <UIInputSubmit callback={register} />
     </div>
