@@ -14,3 +14,6 @@ export const GET_CONSULTANT_BY_ID = (id) => `/profile/get-consultant?id=${id}`;
 export const CREATE_CONSULTANT_PROFILE = "/profile/consultant-profile";
 export const GET_APPOINTMENT_AS_CONSULTANT = (id) =>
   `/appointment/get-single-appointment-as-consultant?id=${id}`;
+export const SEND_CHAT_MESSAGE = "/chat/send-message";
+export const GET_MESSAGES = (recipientId) =>
+  `/chat/get-messages?recipientId=${recipientId}`;

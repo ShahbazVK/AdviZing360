@@ -8,8 +8,10 @@ import Get from "../../utils/Get";
 import SchedulingTime from "../../components/appointment/user/SchedulingTime";
 import Subject from "../../components/appointment/user/Subject";
 import Post from "../../utils/Post";
+import Chat from "../../components/chat";
+import GetChat from "../../components/chat/GetChat";
 
-const CreateAppointment = () => {
+const CreateAppointment = ({ socket }) => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
   const [consultant, setconsultant] = useState({});
@@ -40,6 +42,11 @@ const CreateAppointment = () => {
     <div>
       {!loading ? (
         <div>
+          <Chat
+            socket={socket}
+            recipientId={consultant.tutor.id}
+            recipientName={consultant.tutor.username}
+          />
           <p>Username: {consultant.tutor.username}</p>
           <p>About: {consultant.bio}</p>
           <p>Hourly Rate: {consultant.hourlyRate}</p>

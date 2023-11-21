@@ -12,3 +12,10 @@ body {
   background-color: burlywood;
   cursor: pointer;
 }
+.chat-message {
+  margin-bottom: 10px;
+}
+.chat-scroll {
+  overflow-y: auto;
+  max-height: 300px;
+}
