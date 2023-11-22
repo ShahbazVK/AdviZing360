@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Get from "../../utils/Get";
 import { GET_MESSAGES } from "../../config/ApiRoutes";
 import { scrollToBottom } from "../../utils/chat";
+import { colonAmPmTimeWithSeconds } from "../../utils/DateFunctions";
 
 const GetChat = ({ socket, recipientId, recipientName }) => {
   const chatContainerRef = useRef(null);
@@ -14,7 +15,7 @@ const GetChat = ({ socket, recipientId, recipientName }) => {
         {
           message: message.content,
           sentByMe: message.senderId === recipientId ? false : true,
-          createdTime: new Date(message.timestamp).toLocaleTimeString(),
+          createdTime: colonAmPmTimeWithSeconds(message.timestamp),
           sender: message?.senderId,
         },
       ]);

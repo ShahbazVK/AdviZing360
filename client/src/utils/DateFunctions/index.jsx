@@ -98,3 +98,8 @@ export const customColonTimeTo_NextDate_TimeDateConversion = (time, day) => {
   );
   return nextDate;
 };
+
+//
+export const colonAmPmTimeWithSeconds = (timestamp) => {
+  return new Date(timestamp).toLocaleTimeString();
+};
