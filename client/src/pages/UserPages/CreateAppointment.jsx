@@ -26,7 +26,7 @@ const CreateAppointment = ({ socket }) => {
 
   const searchConsultantById = async (id) => {
     const resp = await Get(SEARCH_CONSULTANT_BY_ID(id));
-    setconsultant(resp.data);
+    setconsultant(resp.data.profile);
     setloading(false);
     setappointment((prev) => ({ ...prev, price: resp.data.hourlyRate }));
   };

@@ -11,7 +11,7 @@ const TheProfile = () => {
   const [loading, setloading] = useState(true);
   const getConsultantById = async () => {
     const resp = await Get(GET_CONSULTANT_BY_ID(User.id));
-    setprofile(resp.data);
+    setprofile(resp?.data?.profile);
     setloading(false);
   };
   useEffect(() => {

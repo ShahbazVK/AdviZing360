@@ -3,7 +3,7 @@ const findUserPrisma = require("../DB/auth/getUser");
 const registerPrisma = require("../DB/auth/register");
 const BadRequestError = require("../errors/bad-request");
 const asyncWrapper = require("../middlewares/async");
-const userTransformer = require("../transformers/user");
+const { userTransformer } = require("../transformers/user/user");
 const generateToken = require("../utils/jwtToken");
 const uploadImage = require("../utils/upload_cloudinary");
 
@@ -24,7 +24,7 @@ const register = asyncWrapper(async (req, res) => {
     password: hashedPassword,
     avatar,
   });
-  res.send(userTransformer(resp));
+  res.status(200).send("registered");
 });
 
 const login = asyncWrapper(async (req, res) => {

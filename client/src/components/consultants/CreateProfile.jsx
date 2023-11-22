@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UIInput from "../UI/UIInput";
 import UIInputSubmit from "../UI/UIInputSubmit";
 import Post from "../../utils/Post";
@@ -27,6 +27,10 @@ const CreateProfile = () => {
     console.log(resp);
     // console.log(profile);
   };
+  useEffect(() => {
+    console.log("object");
+  }, []);
+
   return (
     <div>
       <h1>CreateProfile</h1>

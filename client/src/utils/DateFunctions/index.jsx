@@ -99,7 +99,7 @@ export const customColonTimeTo_NextDate_TimeDateConversion = (time, day) => {
   return nextDate;
 };
 
-//
+// 12:04:57 A.M.
 export const colonAmPmTimeWithSeconds = (timestamp) => {
   return new Date(timestamp).toLocaleTimeString();
 };

@@ -11,6 +11,12 @@ const {
 } = require("../DB/appointment/searchAppointments");
 const BadRequestError = require("../errors/bad-request");
 const asyncWrapper = require("../middlewares/async");
+const {
+  getAppointmentAsConsultantTransformer,
+  getAppointmentAsUserTransformer,
+  getSingleAppointmentAsConsultantTransformer,
+  getSingleAppointmentAsUserTransformer,
+} = require("../transformers/appointment/appointment");
 const { durationBetweenTimeInMinutes } = require("../utils/date");
 const createMeeting = require("../utils/generateZoomMeetingLink");
 
@@ -30,17 +36,17 @@ const createAppointment = asyncWrapper(async (req, res) => {
     meetingLink: meetingDetails.meeting_url,
     userId: req.user.id,
   });
-  res.json({ appointment, meetingDetails });
+  res.status(200).send({ appointmentId: appointment.id });
 });
 
 const getAppointmentAsConsultant = asyncWrapper(async (req, res) => {
   const appointments = await getAppointmentAsConsultantPrisma(req.user.id);
-  res.json(appointments);
+  res.send(getAppointmentAsConsultantTransformer(appointments));
 });
 
 const getAppointmentAsUser = asyncWrapper(async (req, res) => {
   const appointments = await getAppointmentAsUserPrisma(req.user.id);
-  res.json(appointments);
+  res.json(getAppointmentAsUserTransformer(appointments));
 });
 
 const searchAppointmentAsUser = asyncWrapper(async (req, res) => {
@@ -51,6 +57,7 @@ const searchAppointmentAsUser = asyncWrapper(async (req, res) => {
   );
   res.json(filteredAppointments);
 });
+
 const searchAppointmentAsConsultant = asyncWrapper(async (req, res) => {
   const search = req.query.search;
   const filteredAppointments = await searchAppointmentAsConsultantPrisma(
@@ -68,7 +75,7 @@ const getSingleAppointmentAsConsultant = asyncWrapper(async (req, res) => {
   );
   if (!appointment)
     throw new BadRequestError("Such appointment does not exist");
-  res.json(appointment);
+  res.json(getSingleAppointmentAsConsultantTransformer(appointment));
 });
 
 const getSingleAppointmentAsUser = asyncWrapper(async (req, res) => {
@@ -79,7 +86,7 @@ const getSingleAppointmentAsUser = asyncWrapper(async (req, res) => {
   );
   if (!appointment)
     throw new BadRequestError("Such appointment does not exist");
-  res.json(appointment);
+  res.json(getSingleAppointmentAsUserTransformer(appointment));
 });
 
 module.exports = {

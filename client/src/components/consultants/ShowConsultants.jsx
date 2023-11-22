@@ -20,23 +20,24 @@ const ShowConsultants = () => {
   return (
     <div>
       <h2>All Consultants</h2>
-      {Consultants.map((consultant, key) => {
-        return (
-          <div
-            className="consultant-card"
-            onClick={() => consultantProfile(consultant.tutor.id)}
-            key={key}
-          >
-            {/* {JSON.stringify(consultant)} */}
-            <p>Name: {consultant.tutor.username}</p>
-            <p>Hourly Rate: {consultant.hourlyRate}</p>
-            <p>Bio: {consultant.bio}</p>
-            {/* <p>Availability: {consultant.availability}</p> */}
-            <hr />
-            <br />
-          </div>
-        );
-      })}
+      {Consultants &&
+        Consultants.map((consultant, key) => {
+          return (
+            <div
+              className="consultant-card"
+              onClick={() => consultantProfile(consultant.profile.tutor.id)}
+              key={key}
+            >
+              {/* {JSON.stringify(consultant.profile)} */}
+              <p>Name: {consultant.profile.tutor.username}</p>
+              <p>Hourly Rate: {consultant.profile.hourlyRate}</p>
+              <p>Bio: {consultant.profile.bio}</p>
+              {/* <p>Availability: {consultant.profile.availability}</p> */}
+              <hr />
+              <br />
+            </div>
+          );
+        })}
     </div>
   );
 };

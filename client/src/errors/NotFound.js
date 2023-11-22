@@ -1,3 +1,3 @@
-export default () => {
-  alert("Invalid route. Contact administrator");
+export default (errorMsg) => {
+  alert(errorMsg);
 };

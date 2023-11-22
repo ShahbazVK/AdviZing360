@@ -5,7 +5,11 @@ const getConsultantPrisma = require("../DB/consultantProfile/getProfile");
 const searchKeywordPrisma = require("../DB/consultantProfile/searchKeyword");
 const getConsultantByKeywordPrisma = require("../DB/consultantProfile/getConsultantByKeyword");
 const { daysOfWeek, isCustomTimeFormat } = require("../utils/date");
-const { BadRequestError } = require("../errors");
+const { BadRequestError, NotFoundError } = require("../errors");
+const {
+  consultantProfileTransformer,
+  manyConsultantsProfileTransformer,
+} = require("../transformers/consultant/consultant");
 const createConsultantProfile = asyncWrapper(async (req, res) => {
   let startTime = "";
   let endTime = "";
@@ -30,12 +34,12 @@ const createConsultantProfile = asyncWrapper(async (req, res) => {
     },
     subject
   );
-  res.json(profile);
+  res.status(200).send(profile.id);
 });
 
 const getAllConsultants = asyncWrapper(async (req, res) => {
   const consultants = await getAllConsultantsPrisma(req.user.id);
-  res.json(consultants);
+  res.json(manyConsultantsProfileTransformer(consultants));
 });
 
 const getConsultant = asyncWrapper(async (req, res) => {
@@ -43,7 +47,8 @@ const getConsultant = asyncWrapper(async (req, res) => {
   // if (req.user.id === parseInt(id))
   // throw new BadRequestError("You cannot book your own appointment");
   const consultantDetails = await getConsultantPrisma(id);
-  res.json(consultantDetails);
+  if (!consultantDetails) throw new NotFoundError("profile is not created");
+  res.json(consultantProfileTransformer(consultantDetails));
 });
 const searchKeyword = asyncWrapper(async (req, res) => {
   const { search } = req.query;
